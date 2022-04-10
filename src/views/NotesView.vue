@@ -1,5 +1,37 @@
 <template>
-  <h3>Notes</h3>
+  <div class="card has-background-info p-4 mb-5">
+    <div class="field">
+      <div class="control">
+        <textarea class="textarea" placeholder="Add a new note" />
+      </div>
+    </div>
+
+    <div class="field is-grouped is-grouped-right">
+      <div class="control">
+        <button class="button is-link has-background-info-dark">
+          Add New Note
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div v-for="i in 3" class="card mb-4">
+    <div class="card-content">
+      <div class="content">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+        occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+        mollit anim id est laborum.
+      </div>
+    </div>
+    <footer class="card-footer">
+      <a href="#" class="card-footer-item">Edit</a>
+      <a href="#" class="card-footer-item">Delete</a>
+    </footer>
+  </div>
 </template>
 
 <script setup lang="ts"></script>
