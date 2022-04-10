@@ -5,13 +5,13 @@
         <div class="navbar-item is-size-4 is-family-monospace">Noteballs</div>
 
         <a
-          class="navbar-burger"
           :class="{ 'is-active': showMobileNav === true }"
+          class="navbar-burger"
+          @click.prevent="showMobileNav = !showMobileNav"
           aria-expanded="false"
           aria-label="menu"
           data-target="navbarBasicExample"
           role="button"
-          @click.prevent="showMobileNav = !showMobileNav"
         >
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
@@ -21,8 +21,8 @@
 
       <div
         id="navbarBasicExample"
-        class="navbar-menu"
         :class="{ 'is-active': showMobileNav === true }"
+        class="navbar-menu"
       >
         <div class="navbar-end">
           <RouterLink class="navbar-item" active-class="is-active" to="/">
