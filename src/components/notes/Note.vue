@@ -10,7 +10,7 @@
     </div>
     <footer class="card-footer">
       <a class="card-footer-item" href="#"> Edit </a>
-      <a class="card-footer-item" @click.prevent="handleDelete" href="#">
+      <a class="card-footer-item" @click.prevent="deleteNote(note.id)" href="#">
         Delete
       </a>
     </footer>
@@ -22,6 +22,8 @@ import { computed, type PropType } from 'vue';
 
 import type { INote } from '@/types/INote';
 
+import { useNotesStore } from '@/stores/notes';
+
 const props = defineProps({
   note: {
     type: Object as PropType<INote>,
@@ -29,7 +31,7 @@ const props = defineProps({
   },
 });
 
-const emit = defineEmits(['delete-note']);
+const notesStore = useNotesStore();
 
 const noteLength = computed(() => {
   const noteLength = props.note.text.length;
@@ -38,7 +40,7 @@ const noteLength = computed(() => {
   return `${noteLength} ${lengthDescription}`;
 });
 
-const handleDelete = () => {
-  emit('delete-note');
+const deleteNote = (id: string) => {
+  notesStore.deleteNote(id);
 };
 </script>
