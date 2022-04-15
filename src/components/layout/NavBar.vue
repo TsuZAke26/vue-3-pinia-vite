@@ -25,10 +25,20 @@
         class="navbar-menu"
       >
         <div class="navbar-end">
-          <RouterLink class="navbar-item" active-class="is-active" to="/">
+          <RouterLink
+            class="navbar-item"
+            active-class="is-active"
+            :to="{ name: 'Notes' }"
+            @click="showMobileNav = false"
+          >
             Notes
           </RouterLink>
-          <RouterLink class="navbar-item" active-class="is-active" to="/stats">
+          <RouterLink
+            class="navbar-item"
+            active-class="is-active"
+            :to="{ name: 'Stats' }"
+            @click="showMobileNav = false"
+          >
             Stats
           </RouterLink>
         </div>

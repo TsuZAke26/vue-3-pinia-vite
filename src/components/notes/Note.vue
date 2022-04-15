@@ -2,14 +2,16 @@
   <div class="card mb-4">
     <div class="card-content">
       <div class="content">
-        {{ props.note.text }}
+        {{ note.text }}
         <div class="has-text-right has-text-grey-light">
           <small>{{ noteLength }}</small>
         </div>
       </div>
     </div>
     <footer class="card-footer">
-      <a class="card-footer-item" href="#"> Edit </a>
+      <RouterLink class="card-footer-item" :to="`/note/edit/${note.id}`">
+        Edit
+      </RouterLink>
       <a class="card-footer-item" @click.prevent="deleteNote(note.id)" href="#">
         Delete
       </a>
@@ -22,7 +24,7 @@ import { computed, type PropType } from 'vue';
 
 import type { INote } from '@/types/INote';
 
-import { useNotesStore } from '@/stores/notes';
+import { useStoreNotes } from '@/stores/notes';
 
 const props = defineProps({
   note: {
@@ -31,7 +33,7 @@ const props = defineProps({
   },
 });
 
-const notesStore = useNotesStore();
+const storeNotes = useStoreNotes();
 
 const noteLength = computed(() => {
   const noteLength = props.note.text.length;
@@ -41,6 +43,6 @@ const noteLength = computed(() => {
 });
 
 const deleteNote = (id: string) => {
-  notesStore.deleteNote(id);
+  storeNotes.deleteNote(id);
 };
 </script>

@@ -2,7 +2,7 @@ import { defineStore } from 'pinia';
 
 import type { INote } from '@/types/INote';
 
-export const useNotesStore = defineStore('notes', {
+export const useStoreNotes = defineStore('notes', {
   state: () => {
     return {
       notes: [
@@ -13,23 +13,35 @@ export const useNotesStore = defineStore('notes', {
       ],
     };
   },
+  getters: {
+    getNoteById: (state) => {
+      return (id: string) => state.notes.find((note) => note.id === id);
+    },
+    noteCount: (state) => {
+      return state.notes.length;
+    },
+    totalCharacterCount: (state) => {
+      return state.notes.reduce(
+        (previousValue, currentNote) => previousValue + currentNote.text.length,
+        0
+      );
+    },
+  },
   actions: {
     addNote(note: INote) {
-      this.$state.notes.unshift(note);
+      this.notes.unshift(note);
     },
-    editNote(noteId: string, text: string) {
-      const existingNoteIndex = this.$state.notes.findIndex(
-        (note) => note.id === noteId
+    editNote(editedNote: INote) {
+      const existingNoteIndex = this.notes.findIndex(
+        (note) => note.id === editedNote.id
       );
 
       if (existingNoteIndex !== -1) {
-        this.$state.notes.splice(existingNoteIndex, 1, { id: noteId, text });
+        this.notes.splice(existingNoteIndex, 1, editedNote);
       }
     },
-    deleteNote(noteId: string) {
-      this.$state.notes = this.$state.notes.filter(
-        (note) => note.id !== noteId
-      );
+    deleteNote(id: string) {
+      this.notes = this.notes.filter((note) => note.id !== id);
     },
   },
 });
