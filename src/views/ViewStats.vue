@@ -19,11 +19,23 @@
       </tbody>
     </table>
   </div>
+
+  <input
+    v-model="userThoughtsText"
+    class="input"
+    maxlength="50"
+    placeholder="Do you like Noteballs?"
+    type="text"
+    v-autofocus
+  />
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue';
+import { ref } from 'vue';
 import { useStoreNotes } from '@/stores/notes';
+import { vAutofocus } from '@/directives/vAutofocus';
 
 const storeNotes = useStoreNotes();
+
+const userThoughtsText = ref('');
 </script>

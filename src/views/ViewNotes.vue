@@ -27,6 +27,8 @@ import Note from '@/components/notes/Note.vue';
 import type { INote } from '@/types/INote';
 import { useStoreNotes } from '@/stores/notes';
 
+import { useWatchCharacters } from '@/use/useWatchCharacters';
+
 const storeNotes = useStoreNotes();
 
 // https://stackoverflow.com/questions/71847421/vue3-how-to-type-a-component-instance-template-ref-with-exposed-methods/71849133
@@ -46,4 +48,5 @@ const addNewNote = () => {
   noteText.value = '';
   addEditNoteRef.value?.focusTextArea();
 };
+useWatchCharacters(noteText, 140);
 </script>

@@ -4,6 +4,7 @@
       <div class="navbar-brand">
         <div class="navbar-item is-size-4 is-family-monospace">Noteballs</div>
 
+        <!-- Hamburger Button -->
         <a
           :class="{ 'is-active': showMobileNav === true }"
           class="navbar-burger"
@@ -12,6 +13,7 @@
           aria-label="menu"
           data-target="navbarBasicExample"
           role="button"
+          ref="navbarBurgerRef"
         >
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
@@ -23,6 +25,7 @@
         id="navbarBasicExample"
         :class="{ 'is-active': showMobileNav === true }"
         class="navbar-menu"
+        ref="navbarMenuRef"
       >
         <div class="navbar-end">
           <RouterLink
@@ -48,9 +51,22 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, type Ref } from 'vue';
+import { onClickOutside } from '@vueuse/core';
 
 const showMobileNav = ref(false);
+
+const navbarMenuRef: Ref<HTMLElement | null> = ref(null);
+const navbarBurgerRef: Ref<HTMLElement | null> = ref(null);
+onClickOutside(
+  navbarMenuRef,
+  (event) => {
+    if (showMobileNav) {
+      showMobileNav.value = false;
+    }
+  },
+  { ignore: [navbarBurgerRef] }
+);
 </script>
 
 <style scoped>
