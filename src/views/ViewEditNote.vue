@@ -8,7 +8,7 @@
     <template #buttons>
       <button
         :disabled="noteText === initialNoteText"
-        class="button is-link has-background-info"
+        class="button is-link has-background-info mr-2"
         @click.prevent="handleEditNote"
       >
         Save Changes
